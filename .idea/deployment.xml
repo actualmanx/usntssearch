@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" serverName="05-NzbMegasearch" uploadOnCheckin="affe0243-343e-4ead-974b-191706b9a34b" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;.ini">
-    <option name="myUploadOnCheckinName" value="05-NzbMegasearch" />
-  </component>
+  <component name="PublishConfigData" serverName="05-NzbMegasearch" persistUploadOnCheckin="false" exclude=".svn;.cvs;.idea;.DS_Store;.git;.hg;.ini" />
 </project>

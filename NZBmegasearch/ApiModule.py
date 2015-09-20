@@ -30,6 +30,8 @@ import urllib2
 import os
 import logging
 import copy
+import time
+import uuid
 
 log = logging.getLogger(__name__)
 
@@ -220,18 +222,25 @@ class ApiResponses:
                 return self.generate_tvserie_nabresponse_broadcast();
             else:
                 return render_template('api_error.html')
+                   # if user searches for a query, look it up
+        elif (self.args.has_key('q')):
+            query = {'showtitle': self.args['q']}
+            return self.generate_tvserie_nabresponse(query)
+        # use userdefined category
+        elif (self.args.has_key('cat')):
+            return self.generate_tvserie_nabresponse_broadcast(self.args['cat']);
         else:
             return render_template('api_default.html')
 
     #~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~
 
 
-    def generate_tvserie_nabresponse_broadcast(self):
+    def generate_tvserie_nabresponse_broadcast(self, catIDs='540,5030'):
 
         addparams = dict(
-                        age= '1500',
+                        age= '3000',
                         t='tvsearch',
-                        cat='5040,5030')
+                        cat=catIDs)
 
         rawResults = SearchModule.performSearch('', self.cfg, self.cfg_ds, addparams)
         #~ rawResults = SearchModule.performSearch('', self.cfg, None, addparams)
@@ -397,10 +406,15 @@ class ApiResponses:
                 dt1 =  datetime.datetime.fromtimestamp(int(results[i]['posting_date_timestamp']))
                 human_readable_time = dt1.strftime("%a, %d %b %Y %H:%M:%S")
 
+                if(self.cgen['revproxy'].find('http') != -1):
+                    url = self.cgen['revproxy'] + '/warp?x='+qryforwarp
+                else:
+                    url = self.rqurl + self.cgen['revproxy'] + '/warp?x='+qryforwarp
+
                 niceResults_row = {
                             #~ 'url': results[i]['url'],
-                            'url':self.rqurl + self.cgen['revproxy'] + '/warp?x='+qryforwarp,
-                            'encodedurl': qryforwarp,
+                            'url':url,
+                            'encodedurl':  uuid.uuid4(),
                             'title':results[i]['title'],
                             'filesize':results[i]['size'],
                             'age':human_readable_time,
@@ -409,8 +423,8 @@ class ApiResponses:
                         }
 
                 #~ non CP request generate might errors if no url is found in the permalink
-                if(self.typesearch != 0):
-                    niceResults_row['encodedurl'] = 'http://bogus.gu/bog'
+                if(self.typesearch != 0 or self.typesearch != 1):
+                    niceResults_row['encodedurl'] = self.rqurl + '/' + str(uuid.uuid4())
 
                 niceResults.append(	niceResults_row)
 

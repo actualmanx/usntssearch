@@ -84,7 +84,7 @@ $ git push
 * On the remote server prompt (shortened for visibility), type:
 > ```
 [flask-dog.rhcloud.com]\> cd app-root/repo/wsgi/
-[flask-dog.rhcloud.com]\> git clone https://github.com/Mirabis/usntssearch
+[flask-dog.rhcloud.com]\> git clone https://github.com/actualmanx/usntssearch
 [flask-dog.rhcloud.com]\> cd usntssearch/NZBmegasearch/openshift
 [flask-dog.rhcloud.com]\> ./install_openshift.sh
 [flask-dog.rhcloud.com]\> ctl_app restart

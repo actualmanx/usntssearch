@@ -270,7 +270,7 @@
 							{% if send2sab_exist   -%}
 								<a href= "" id=tosab_lnk name=tosab_info{{ row['id'] }}>
 								{% if cgen['use_warp'] == 1  -%}
-									<input type="hidden" value=" {{ row['url_encr'] }}" name=tosab_info{{ row['id'] }}>
+									<input type="hidden" value=" {{ row['url'] }}" name=tosab_info{{ row['id'] }}>
 								{%- else %}
 									<input type="hidden" value=" {{ row['url'] }}" name=tosab_info{{ row['id'] }}>
 								{%- endif %}
@@ -280,7 +280,7 @@
 							{% if send2nzbget_exist   -%}
 								<a href= "" id=tonzbget_lnk name=tonzbget_info{{ row['id'] }}>
 								{% if cgen['use_warp'] == 1  -%}
-									<input type="hidden" value=" {{ row['url_encr'] }}" name=tonzbget_info{{ row['id'] }}>
+									<input type="hidden" value=" {{ row['url'] }}" name=tonzbget_info{{ row['id'] }}>
 								{%- else %}
 									<input type="hidden" value=" {{ row['url'] }}" name=tonzbget_info{{ row['id'] }}>
 								{%- endif %}
@@ -289,7 +289,7 @@
 							<input type="checkbox" id="smartnzb" name="{{ row['id'] }}" class="nzbanalize_cbox">
 
 							{% if cgen['use_warp'] == 1  -%}
-								<a href= "{{ row['url_encr'] }}" id=nzburl{{ row['id'] }}>{{ row['title'] }}</a>
+								<a href= "{{ row['url'] }}" id=nzburl{{ row['id'] }}>{{ row['title'] }}</a>
 							{%- else %}
 								<a href= "{{ row['url'] }}" id=nzburl{{ row['id'] }}>{{ row['title'] }}</a>
 							{%- endif %}

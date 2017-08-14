@@ -1,4 +1,4 @@
-Doesn't seem to play ball with automation tools... thinking of an alternative/fresh start
+
 
 **NZBmegasearcH**
 ======================
@@ -12,6 +12,9 @@ NZBmegasearcH collects all your (not only) newznab-based accounts to one place. 
 All credits to the original authors. 
 
 ## Updates
+
+Background & colours
+
 **Changes in v0.56 (11/11/2015)**
 + Merged Undeadhunters NzbGet fix
 + Merged HackedServers rearranged search priority + tvbid (replaced)
